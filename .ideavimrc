@@ -1,0 +1,96 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader=" "
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+Plug 'tpope/vim-surround'
+
+" Explorer
+
+Plug 'preservim/nerdtree'
+
+" Open Explorer
+nmap <leader>eo :NERDTree<cr>
+nmap <leader>eh :NERDTreeFind<cr>
+
+" q     Close explorer
+
+" Modify paste so that it doesn't replace the yank register
+xnoremap <leader>p \"_dP
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+map <leader>r <Action>(ReformatCode)
+map <leader>o <Action>(OptimizeImports)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+" Code nativation bindings
+nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(GotoSuperMethod)
+nmap gd <Action>(GotoDeclaration)
+nmap gu <Action>(GotoUsages)
+
+nmap ]g <Action>(Forward)
+nmap [g <Action>(Back)
+
+map <leader>f <Action>(SearchEverywhere)
+
+nmap ]e <Action>(GotoNextError)
+nmap [e <Action>(GotoPreviousError)
+
+nmap ]E <Action>(ReSharperGotoNextErrorInSolution)
+nmap [E <Action>(ReSharperGotoPreviousErrorInSolution)
+
+nmap K <Action>(ShowHoverInfo)
+
+" Window bindings
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+
+nmap <leader>sv <Action>(SplitVertically)
+nmap <leader>sh <Action>(SplitHorizontally)
+nmap <leader>sc <Action>(Unsplit)
+nmap <leader>sa <Action>(UnsplitAll)
+nmap <leader>sx <Action>(CloseContent)
+nmap <leader>sz <Action>(CloseAllEditors) :NERDTree<cr>
+
+nmap <leader>h <Action>(PreviousTab)
+nmap <leader>l <Action>(NextTab)
+
+" Refactoring
+
+set idearefactormode=visual
+
+nmap <leader>rr <Action>(RenameElement)
+vmap <leader>re <Action>(IntroduceVariable)
+vmap <leader>rm <Action>(ExtractMethod)
+nmap <leader>rf <Action>(Refactorings.QuickListPopupAction)
+
+nmap <leader>i <Action>(ShowIntentionActions)
