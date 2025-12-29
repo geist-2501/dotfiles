@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/blair/.zsh/completions:"* ]]; then export FPATH="/home/blair/.zsh/completions:$FPATH"; fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -120,3 +122,16 @@ path+=("$ANDROID_HOME/platform-tools")
 path+=("$ANDROID_HOME/emulator")
 
 export CHROME_PATH="/usr/bin/thorium-browser"
+
+[ -f "/home/blair/.ghcup/env" ] && . "/home/blair/.ghcup/env" # ghcup-env
+
+path+=("/opt/nvim-linux-x86_64/bin")
+path+=("$HOME/.cargo/bin")
+path+=("$HOME/apps/zen")
+
+# opam configuration
+[[ ! -r /home/blair/.opam/opam-init/init.zsh ]] || source /home/blair/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+. "/home/blair/.deno/env"
+# Initialize zsh completions (added by deno install script)
+autoload -Uz compinit
+compinit
